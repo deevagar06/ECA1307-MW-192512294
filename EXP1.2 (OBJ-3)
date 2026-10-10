@@ -1,0 +1,69 @@
+```matlab
+% Simulation of a Microwave Network and Analysis of Insertion Loss
+% Using MATLAB
+
+clc;
+clear;
+close all;
+
+% Frequency Range (GHz)
+frequency = 1:1:10;
+
+% Transmission Coefficient (S21)
+S21 = [0.95 0.92 0.89 0.85 0.82 0.78 0.74 0.70 0.67 0.63];
+
+% Calculate Insertion Loss (dB)
+Insertion_Loss = -20 * log10(abs(S21));
+
+% Display Results
+fprintf('Frequency (GHz)\tS21\tInsertion Loss (dB)\n');
+
+for i = 1:length(frequency)
+    fprintf('%d\t\t%.2f\t%.2f\n', frequency(i), S21(i), Insertion_Loss(i));
+end
+
+% Plot 1: S21 vs Frequency
+figure;
+plot(frequency, S21, '-o', 'LineWidth', 2);
+grid on;
+xlabel('Frequency (GHz)');
+ylabel('|S21|');
+title('Transmission Coefficient vs Frequency');
+
+% Plot 2: Insertion Loss vs Frequency
+figure;
+plot(frequency, Insertion_Loss, '-s', 'LineWidth', 2);
+grid on;
+xlabel('Frequency (GHz)');
+ylabel('Insertion Loss (dB)');
+title('Insertion Loss Characteristics of Microwave Network');
+
+% Plot 3: Combined Analysis
+figure;
+
+yyaxis left;
+plot(frequency, S21, '-o', 'LineWidth', 2);
+ylabel('|S21|');
+
+yyaxis right;
+plot(frequency, Insertion_Loss, '-s', 'LineWidth', 2);
+ylabel('Insertion Loss (dB)');
+
+xlabel('Frequency (GHz)');
+title('Microwave Network Performance Analysis');
+legend('Transmission Coefficient (S21)', 'Insertion Loss');
+grid on;
+
+% Calculate Average Insertion Loss
+avg_IL = mean(Insertion_Loss);
+fprintf('\nAverage Insertion Loss = %.2f dB\n', avg_IL);
+
+% Network Performance Assessment
+if avg_IL < 1
+    fprintf('Network Performance: Excellent\n');
+elseif avg_IL < 3
+    fprintf('Network Performance: Good\n');
+else
+    fprintf('Network Performance: Poor\n');
+end
+```
