@@ -1,0 +1,23 @@
+clc;
+clear;
+close all;
+% Operating Frequency
+f = 9e9; % 9 GHz
+% RF Period
+tau = 1/f;
+% Oscillation Modes
+n = 0:6;
+% Transit Time Calculation
+TransitTime = (n + 0.75)*tau;
+fprintf('Mode\tTransit Time(ps)\n');
+for i=1:length(n)
+fprintf('%d\t%.2f\n',n(i),TransitTime(i)*1e12);
+end
+% Plot
+figure;
+stem(n,TransitTime*1e12,'filled');
+
+grid on;
+xlabel('Mode Number');
+ylabel('Transit Time (ps)');
+title('Oscillation Modes of Reflex Klystron');
