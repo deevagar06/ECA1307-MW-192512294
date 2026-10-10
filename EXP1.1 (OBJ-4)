@@ -1,0 +1,65 @@
+% Determination of ABCD Parameters (Transmission Parameters)
+% of a Two-Port Network
+
+clc;
+clear;
+close all;
+
+% Given Measurements
+
+% Case 1: Output Port Open-Circuited (I2 = 0)
+V1_oc = 20; % Input Voltage (V)
+I1_oc = 4; % Input Current (A)
+V2_oc = 10; % Output Voltage (V)
+
+% Case 2: Input Port Open-Circuited (Used for D Calculation)
+I2 = 2; % Output Current (A)
+V1 = 16; % Input Voltage (V)
+I1 = 3; % Input Current (A)
+V2 = 8; % Output Voltage (V)
+
+% Calculation of ABCD Parameters
+
+% For I2 = 0 condition
+A = V1_oc / V2_oc;
+C = I1_oc / V2_oc;
+
+% General condition
+D = I1 / I2;
+B = (V1 - A*V2) / I2;
+
+% Display Results
+
+fprintf('ABCD Parameters of the Two-Port Network\n');
+fprintf('---------------------------------------\n');
+fprintf('A = %.2f\n', A);
+fprintf('B = %.2f Ohms\n', B);
+fprintf('C = %.2f Siemens\n', C);
+fprintf('D = %.2f\n', D);
+
+% ABCD Matrix
+
+ABCD = [A B;
+C D];
+
+disp('ABCD Parameter Matrix = ');
+disp(ABCD);
+
+% Bar Chart Representation
+
+figure;
+bar([A B C D]);
+grid on;
+title('ABCD Parameters of Two-Port Network');
+xlabel('Parameters');
+ylabel('Magnitude');
+
+set(gca,'XTickLabel',{'A','B','C','D'});
+
+% Table Display
+
+Parameter = {'A';'B';'C';'D'};
+Value = [A;B;C;D];
+
+T = table(Parameter,Value);
+disp(T);
