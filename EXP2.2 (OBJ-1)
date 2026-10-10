@@ -1,0 +1,15 @@
+clc;
+clear;
+close all;
+Modes = [1 2 3 4 5];
+Power = [5 12 18 14 8];
+fprintf('Mode\tOutput Power(mW)\n');
+for i=1:length(Modes)
+fprintf('%d\t%.2f\n',Modes(i),Power(i));
+end
+figure;
+bar(Modes,Power);
+grid on;
+xlabel('Oscillation Mode');
+ylabel('Output Power (mW)');
+title('Output Power Variation with Oscillation Mode');
