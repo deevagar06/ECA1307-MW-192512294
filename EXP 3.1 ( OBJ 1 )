@@ -1,0 +1,25 @@
+clc;
+clear;
+close all;
+Pin = 100; % Input Power (mW)
+Pc = 10; % Coupled Power (mW)
+% Coupling Factor Calculation
+C = 10*log10(Pin/Pc);
+
+fprintf('Coupling Factor = %.2f dB\n', C);
+
+
+% Bar Graph
+figure;
+bar([Pin Pc],'FaceColor',[0.2 0.6 0.8]);
+grid on;
+
+title('Input and Coupled Power');
+xlabel('Power Levels');
+ylabel('Power (mW)');
+
+set(gca,'XTickLabel',{'Input Power','Coupled Power'});
+
+% Display values on bars
+text(1,Pin+2,num2str(Pin),'HorizontalAlignment','center');
+text(2,Pc+2,num2str(Pc),'HorizontalAlignment','center');
