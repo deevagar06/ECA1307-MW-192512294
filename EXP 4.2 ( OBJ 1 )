@@ -1,0 +1,31 @@
+clc;
+clear;
+close all;
+
+% Frequency Range (GHz)
+f = 8:0.1:12;
+
+% Resonant Frequencies
+fr_coax = 9.5; % Coaxial Resonator
+fr_wave = 10.5; % Waveguide Resonator
+
+
+% Resonance Characteristics
+A_coax = 1./sqrt(1+((f-fr_coax)/0.2).^2);
+A_wave = 1./sqrt(1+((f-fr_wave)/0.3).^2);
+
+% Plot
+figure;
+plot(f,A_coax,'LineWidth',2);
+hold on;
+plot(f,A_wave,'LineWidth',2);
+
+grid on;
+title('Resonance Characteristics of Coaxial and Waveguide Resonators');
+xlabel('Frequency (GHz)');
+ylabel('Normalized Amplitude');
+legend('Coaxial Resonator','Waveguide Resonator');
+
+% Display Resonant Frequencies
+fprintf('Coaxial Resonator Resonant Frequency = %.1f GHz\n',fr_coax);
+fprintf('Waveguide Resonator Resonant Frequency = %.1f GHz\n',fr_wave);
