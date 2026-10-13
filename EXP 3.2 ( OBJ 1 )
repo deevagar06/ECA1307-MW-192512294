@@ -1,0 +1,19 @@
+clc;
+clear;
+close all;
+% X-band frequency range (GHz)
+f = 8:0.5:12;
+% Assumed Coupled Power Values (dB)
+Coupling = [-18 -19 -20 -20 -20 -19 -18 -17 -16];
+% Plot Coupling Characteristics
+figure;
+plot(f,Coupling,'-o','LineWidth',2);
+grid on;
+
+
+title('Bethe Hole Directional Coupler Characteristics');
+xlabel('Frequency (GHz)');
+ylabel('Coupling Factor (dB)');
+% Tabulation
+disp(' Frequency(GHz) Coupling Factor(dB)');
+disp([f' Coupling']);
