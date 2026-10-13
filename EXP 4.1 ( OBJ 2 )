@@ -1,0 +1,28 @@
+clc;
+clear;
+close all;
+% S-Parameters of H-Plane Tee (assumed values)
+S11 = 0.10; % Reflection coefficient
+S21 = 0.70; % Transmission coefficient Port1->Port2
+S31 = 0.70; % Transmission coefficient Port1->Port3
+% Power coefficients
+P_reflected = S11^2 * 100;
+P_port2 = S21^2 * 100;
+P_port3 = S31^2 * 100;
+% Display Results
+fprintf('S11 = %.2f\n',S11);
+fprintf('S21 = %.2f\n',S21);
+fprintf('S31 = %.2f\n',S31);
+fprintf('Reflected Power = %.2f %%\n',P_reflected);
+fprintf('Power at Port 2 = %.2f %%\n',P_port2);
+fprintf('Power at Port 3 = %.2f %%\n',P_port3);
+% Graph
+S_parameters = [S11 S21 S31];
+figure;
+bar(S_parameters);
+grid on;
+title('H-Plane Tee S-Parameters');
+
+xlabel('S-Parameters');
+ylabel('Magnitude');
+set(gca,'XTickLabel',{'S11','S21','S31'});
