@@ -1,0 +1,25 @@
+% Gunn Diode Oscillation Characteristics
+clc;
+clear;
+close all;
+% Active region length in micrometers
+L = [5 10 15 20 25];
+% Convert to cm
+L_cm = L * 1e-4;
+% Electron drift velocity (cm/s)
+vd = 1e7;
+% Transit Time
+T = L_cm ./ vd;
+% Oscillation Frequency
+f = 1 ./ T;
+% Convert to GHz
+f_GHz = f/1e9;
+% Plot
+figure;
+plot(L,f_GHz,'o-','LineWidth',2);
+grid on;
+xlabel('Active Region Length (\mum)');
+ylabel('Frequency (GHz)');
+title('Gunn Diode Oscillation Characteristics');
+disp('Length(um) Transit Time(s) Frequency(GHz)');
+disp([L' T' f_GHz']);
