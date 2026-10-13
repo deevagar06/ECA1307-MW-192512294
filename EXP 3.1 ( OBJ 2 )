@@ -1,0 +1,27 @@
+clc;
+clear;
+close all;
+% Power values in mW
+Pin = 100; % Input Power
+Pout = 80; % Output Power
+Pc = 10; % Coupled Power
+Pi = 1; % Isolated Port Power
+% Calculations
+Coupling = 10*log10(Pin/Pc);
+Insertion_Loss = 10*log10(Pin/Pout);
+Isolation = 10*log10(Pin/Pi);
+Directivity = 10*log10(Pc/Pi);
+% Display Results
+fprintf('Coupling Factor = %.2f dB\n',Coupling);
+fprintf('Insertion Loss = %.2f dB\n',Insertion_Loss);
+fprintf('Isolation = %.2f dB\n',Isolation);
+fprintf('Directivity = %.2f dB\n',Directivity);
+% Plot
+parameters = [Coupling Insertion_Loss Isolation Directivity];
+figure;
+bar(parameters);
+grid on;
+title('Directional Coupler Parameters');
+xlabel('Parameters');
+ylabel('Value (dB)');
+set(gca,'XTickLabel',{'Coupling','Insertion Loss','Isolation','Directivity'});
