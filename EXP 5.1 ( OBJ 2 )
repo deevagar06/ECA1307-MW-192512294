@@ -1,0 +1,36 @@
+% Gunn Diode V-I Characteristics
+clc;
+clear;
+close all;
+% Voltage (V)
+V = [0 1 2 3 4 5 6 7 8 9 10];
+
+% Current (A)
+I = [0 0.08 0.16 0.24 0.21 0.18 0.15 0.17 0.19 0.21 0.23];
+% Plot V-I Characteristics
+figure;
+plot(V,I,'-o','LineWidth',2);
+grid on;
+xlabel('Voltage (V)');
+ylabel('Current (A)');
+title('Threshold Voltage and Negative Resistance Region of Gunn Diode');
+% Peak Current and Threshold Voltage
+[Ip,index] = max(I);
+Vth = V(index);
+hold on;
+plot(Vth,Ip,'rs','MarkerSize',10,'MarkerFaceColor','r');
+% Valley Current
+[Iv,valley_index] = min(I(index:end));
+Vv = V(index+valley_index-1);
+plot(Vv,Iv,'ks','MarkerSize',10,'MarkerFaceColor','k');
+legend('V-I Characteristics', ...
+    'Threshold Voltage', ...
+    'Valley Point');
+% Display Results
+fprintf('Threshold Voltage = %.2f V\n',Vth);
+fprintf('Peak Current = %.2f A\n',Ip);
+fprintf('Valley Voltage = %.2f V\n',Vv);
+fprintf('Valley Current = %.2f A\n',Iv);
+% Differential Resistance
+Rn = (Vv - Vth)/(Iv - Ip);
+fprintf('Negative Resistance = %.2f Ohms\n',Rn);
