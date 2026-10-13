@@ -1,0 +1,26 @@
+% Gunn Diode V-I Characteristics Simulation
+clc; clear; close all;
+% Parameters
+q = 1.6e-19; % Electron charge (C)
+n = 1e22; % Electron concentration (m^-3)
+mu = 0.36; % Mobility (m^2/V·s)
+Ec = 3.3e3; % Critical field (V/m)
+% Electric field range
+E = linspace(0, 5e4, 500); % Electric field (V/m)
+% Drift velocity model
+v = (mu .* E) ./ (1 + (E ./ Ec));
+% Current density
+J = q .* n .* v;
+% Plot V-I characteristics
+figure;
+plot(E, J, 'LineWidth', 2);
+xlabel('Electric Field (V/m)');
+ylabel('Current Density (A/m^2)');
+title('V-I Characteristics of Gunn Diode');
+grid on;
+% Highlight threshold and negative resistance region
+
+hold on;
+xline(Ec, '--r', 'Threshold Voltage (E_c)');
+text(Ec + 500, max(J)*0.8, 'Negative Resistance Region →', 'Color', 'r');
+hold off;
