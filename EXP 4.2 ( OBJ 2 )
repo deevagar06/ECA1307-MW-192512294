@@ -1,0 +1,23 @@
+clc;
+clear;
+close all;
+% Resonator Parameters
+fr = 10; % Resonant Frequency (GHz)
+BW = 0.2; % Bandwidth (GHz)
+IL = 1.5; % Insertion Loss (dB)
+% Quality Factor
+Q = fr/BW;
+fprintf('Resonant Frequency = %.2f GHz\n',fr);
+fprintf('Bandwidth = %.2f GHz\n',BW);
+fprintf('Quality Factor = %.2f\n',Q);
+fprintf('Insertion Loss = %.2f dB\n',IL);
+% Frequency Response
+f = 9:0.05:11;
+A = 1./sqrt(1+((f-fr)/(BW/2)).^2);
+% Plot
+figure;
+plot(f,A,'LineWidth',2);
+grid on;
+title('Microwave Resonator Frequency Response');
+xlabel('Frequency (GHz)');
+ylabel('Normalized Amplitude');
