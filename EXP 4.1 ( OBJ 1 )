@@ -1,0 +1,26 @@
+clc;
+clear;
+close all;
+% Input Power (mW)
+Pin = 100;
+% Power distribution at output ports
+P2 = [20 40 60 80];
+P3 = [80 60 40 20];
+% Percentage Power Distribution
+P2_percent = (P2/Pin)*100;
+P3_percent = (P3/Pin)*100;
+% Display Results
+
+fprintf('Input Power = %d mW\n\n',Pin);
+disp('Port2(mW) Port3(mW) Port2(%) Port3(%)');
+disp([P2' P3' P2_percent' P3_percent']);
+% Bar Graph
+figure;
+PowerData = [P2' P3'];
+bar(PowerData,'grouped');
+grid on;
+title('Power Distribution in E-Plane Tee');
+xlabel('Cases');
+ylabel('Power (mW)');
+legend('Port 2','Port 3','Location','northoutside');
+set(gca,'XTickLabel',{'Case1','Case2','Case3','Case4'});
