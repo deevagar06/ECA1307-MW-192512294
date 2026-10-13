@@ -1,0 +1,26 @@
+% Oscillation Frequency Estimation using Transit-Time Effect
+clc;
+clear;
+close all;
+% Active region length (um)
+L = [5 10 15 20 25];
+% Convert um to cm
+L_cm = L*1e-4;
+% Electron drift velocity (cm/s)
+vd = 1e7;
+% Transit Time
+T = L_cm./vd;
+% Oscillation Frequency
+f = 1./T;
+% Convert Hz to GHz
+f_GHz = f/1e9;
+% Display values
+disp(' Length(um) TransitTime(s) Frequency(GHz)')
+disp([L' T' f_GHz'])
+% Plot
+figure;
+plot(L,f_GHz,'r-o','LineWidth',2);
+grid on;
+xlabel('Active Region Length (\mum)');
+ylabel('Oscillation Frequency (GHz)');
+title('Oscillation Frequency based on Transit-Time Effect');
