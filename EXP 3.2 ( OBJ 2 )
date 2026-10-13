@@ -1,0 +1,23 @@
+clc;
+clear;
+close all;
+
+% Input and Coupled Power (mW)
+Pin = [100 100 100 100 100];
+Pc = [5 10 15 20 25];
+
+% Coupling Coefficient (dB)
+C = 10*log10(Pin./Pc);
+
+% Display Results
+disp(' Input Power(mW) Coupled Power(mW) Coupling Coefficient(dB)')
+disp([Pin' Pc' C'])
+
+% Plot
+figure;
+plot(Pc,C,'-o','LineWidth',2);
+grid on;
+
+title('Coupling Coefficient of Bethe Hole Coupler');
+xlabel('Coupled Power (mW)');
+ylabel('Coupling Coefficient (dB)');
