@@ -1,0 +1,39 @@
+clc;
+clear;
+close all;
+% Characteristic Impedance
+Z0 = 50;
+% Load Impedance Values
+ZL = [25 50 100];
+for i = 1:length(ZL)
+    % Reflection Coefficient
+    Gamma(i) = (ZL(i)-Z0)/(ZL(i)+Z0);
+    % Magnitude
+
+    Gmag(i) = abs(Gamma(i));
+    % VSWR Calculation
+    VSWR(i) = (1+Gmag(i))/(1-Gmag(i));
+end
+% Display Results
+disp(table(ZL',Gmag',VSWR',...
+    'VariableNames',{'LoadImpedance','ReflectionCoefficient','VSWR'}))
+% VSWR Plot
+figure;
+bar(VSWR)
+grid on
+xlabel('Case Number')
+ylabel('VSWR')
+title('VSWR for Different Load Impedances')
+% Standing Wave Pattern
+x = linspace(0,2*pi,500);
+figure;
+for i=1:length(Gmag)
+    V = abs(1 + Gmag(i).*exp(-1j*x));
+    plot(x,V,'LineWidth',2)
+    hold on
+end
+grid on
+xlabel('Distance Along Transmission Line')
+ylabel('Normalized Voltage')
+title('Standing Wave Patterns')
+legend('Case 1','Case 2','Case 3')
