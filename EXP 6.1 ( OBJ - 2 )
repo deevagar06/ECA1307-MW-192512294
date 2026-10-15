@@ -1,0 +1,21 @@
+clc;
+clear;
+close all;
+% Input Parameters
+Z0 = 50; % Source Impedance (Ohms)
+ZL = 200; % Load Impedance (Ohms)
+% Characteristic Impedance Calculation
+Zt = sqrt(Z0 * ZL);
+% Display Results
+fprintf('Source Impedance (Z0) = %.2f Ohms\n', Z0);
+fprintf('Load Impedance (ZL) = %.2f Ohms\n', ZL);
+fprintf('Characteristic Impedance (Zt) = %.2f Ohms\n', Zt);
+% Bar Graph
+impedance = [Z0 Zt ZL];
+figure;
+bar(impedance);
+grid on;
+xlabel('Impedance Type');
+ylabel('Impedance (Ohms)');
+title('Characteristic Impedance for Maximum Power Transfer');
+set(gca,'XTickLabel',{'Source Z0','Characteristic Zt','Load ZL'});
