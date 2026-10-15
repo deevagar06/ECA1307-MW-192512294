@@ -1,0 +1,30 @@
+clc;
+clear;
+close all;
+c = 3e8; % Speed of light
+% Input Parameters
+Z0 = [50 50 75];
+ZL = [100 200 300];
+f = [2e9 5e9 10e9];
+for i = 1:length(Z0)
+    Zt(i) = sqrt(Z0(i)*ZL(i));
+    lambda(i) = c/f(i);
+    L(i) = lambda(i)/4;
+    fprintf('\nCase %d\n',i);
+    fprintf('Transformer Impedance = %.2f Ohms\n',Zt(i));
+    fprintf('Wavelength = %.4f m\n',lambda(i));
+    fprintf('Quarter Wave Length = %.4f m\n',L(i));
+end
+% Plot
+figure;
+bar(Zt)
+grid on
+xlabel('Case Number')
+ylabel('Transformer Impedance (Ohms)')
+title('Quarter Wave Transformer Impedance')
+figure;
+plot(1:3,L,'-o','LineWidth',2)
+grid on
+xlabel('Case Number')
+ylabel('Transformer Length (m)')
+title('Quarter Wave Transformer Length')
